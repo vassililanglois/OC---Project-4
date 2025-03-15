@@ -30,6 +30,16 @@ img {
   padding-right: 1rem;
 }
 
+.menu_burger {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.main-navbar {
+  margin-top: 20px;
+}
+
 .topnav {
   display: flex;
   align-items: center;
@@ -77,6 +87,13 @@ img {
 }
 
 @media screen and (max-width: 1200px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+  }
   .topnav {
     align-items: flex-start;
     margin-right: 5%;
@@ -91,21 +108,21 @@ img {
     padding: 0;
   }
 
-  .topnav.responsive {
+  .topnav.responsive a {
+    float: none;
+    display: flex;
+    text-align: left;
+  }
+  /*.topnav.responsive {
     position: relative;
   }
 
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
 
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
     top: 0;
-  }
+  }*/
 }
 
 main {
@@ -146,6 +163,11 @@ footer {
 }
 
 /* Modal form */
+
+.modal_wrapper {
+  display: flex;
+  justify-content: center;
+}
 
 .button {
   background: #fe142f;
@@ -193,6 +215,9 @@ footer {
   padding-top: 10px;
 }
 
+.bground .main-navbar .nav_links {
+  font-weight: 400;
+}
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
@@ -559,6 +584,16 @@ input[data-error]::after {
 
   .fa-bars {
     font-size: 10px;
+  }
+
+  @media (max-width: 500px) {
+    .content {
+      margin: 0;
+      height: 100%;
+      margin-bottom: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
   }
 }
 
