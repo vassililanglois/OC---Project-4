@@ -47,6 +47,12 @@ img {
 .main-navbar {
   float: right;
 }
+
+.nav_links {
+  margin-top: 2rem;
+  width: fit-content;
+}
+
 .topnav a {
   float: left;
   display: block;
@@ -59,7 +65,7 @@ img {
   font-family: "DM Sans";
 }
 
-.topnav a:hover {
+.topnav .nav_links:hover {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
@@ -74,17 +80,21 @@ img {
   font-size: 30px;
 }
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 1200px) {
+  .topnav {
+    align-items: flex-start;
+    margin-right: 5%;
+  }
   .topnav a {
     display: none;
   }
   .topnav a.icon {
     float: right;
-    display: block;
+    display: flex;
+    margin: 0;
+    padding: 0;
   }
-}
 
-@media screen and (max-width: 768px) {
   .topnav.responsive {
     position: relative;
   }
@@ -141,10 +151,11 @@ main {
   background: #3876ac;
 }
 
-.footer {
+footer {
   margin: 20px;
   padding: 10px;
   font-family: var(--font-slab);
+  padding: 2vh 2vw;
 }
 
 /* Modal form */
@@ -169,6 +180,8 @@ main {
 
 .bground {
   display: none;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -176,7 +189,7 @@ main {
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
+  background-color: white;
 }
 
 .content {
@@ -487,13 +500,10 @@ input[data-error]::after {
   margin: 60px 0 30px;
   font-weight: bolder;
 }
-.hero-section > .btn-signup {
+.hero-section > .btn-signup-wrapper {
   display: none;
 }
-footer {
-  padding-left: 2vw;
-  padding-right: 2vw;
-}
+
 @media screen and (max-width: 1024px) {
   .hero-section {
     display: block;
@@ -502,7 +512,7 @@ footer {
   .hero-content {
     background: #fff;
     color: #000;
-    padding: 20px;
+    padding: 0px;
   }
   .hero-content::after {
     content: unset;
@@ -511,25 +521,82 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 5.5rem;
     white-space: normal;
+    margin-bottom: 20px;
   }
+
   .hero-text {
     width: unset;
     font-size: 1.5rem;
+    margin-top: 0;
   }
   .hero-img img {
     border-radius: 10px;
     margin-top: 40px;
   }
-  .hero-section > .btn-signup {
-    display: block;
-    margin: 32px auto 10px;
-    padding: 12px 35px;
+  .hero-section > .btn-signup-wrapper {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  footer {
+    display: flex;
+    justify-content: center;
   }
   .copyrights {
-    margin-top: 50px;
     text-align: center;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .hero-headline {
+    font-size: 3rem;
+  }
+  .hero-text {
+    font-size: 1rem;
+  }
+
+  .header-logo img {
+    width: 103px;
+  }
+
+  .icon .fa-bars {
+    font-size: 19px;
+  }
+  .nav_links span {
+    font-size: 1rem;
+  }
+
+  .fa-bars {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+
+  .hero-section .btn-signup {
+    font-size: 0.875rem;
+    padding: 10px 30px;
+    margin-top: 25px;
+  }
+
+  footer {
+    padding: 5px;
+    margin: 0;
+  }
+
+  .copyrights {
+    font-size: 0.625rem;
+  }
+
+  .hero-text {
+    font-size: 0.8125rem;
   }
 }
 
