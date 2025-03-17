@@ -36,21 +36,22 @@ img {
   right: 0;
 }
 
-.main-navbar {
-  margin-top: 20px;
-}
-
 .topnav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  overflow: hidden;
   margin-left: 5%;
   margin-top: 5%;
+  margin-bottom: 5%;
   padding-left: 2vw;
   padding-right: 2vw;
   max-width: 1300px;
 }
+
+#myTopnav2 {
+  display: none;
+}
+
 .header-logo {
   float: left;
 }
@@ -190,7 +191,6 @@ footer {
 .bground {
   display: none;
   justify-content: center;
-  align-items: center;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -209,7 +209,7 @@ footer {
   animation-duration: var(--modal-duration);
   background: #232323;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
   color: #fff;
   padding-top: 10px;
@@ -367,6 +367,7 @@ input[data-error]::after {
   color: #fff;
   cursor: pointer;
   border: 0;
+  margin-top: 10px;
 }
 /* custom select styles */
 .custom-select {
@@ -585,15 +586,20 @@ input[data-error]::after {
   .fa-bars {
     font-size: 10px;
   }
+}
 
-  @media (max-width: 500px) {
-    .content {
-      margin: 0;
-      height: 100%;
-      margin-bottom: 0;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
+@media (max-width: 500px) {
+  .content {
+    margin: 0;
+    height: 100%;
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  #myTopnav2 {
+    display: flex;
+    justify-content: space-between;
   }
 }
 
