@@ -2,9 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Reservation</title>
+    <title>GameOn</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="modal.css" />
+    <link rel="icon" type="image/gif" href="/web-logo.png" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -80,34 +81,38 @@
           <div class="content">
             <span class="close"></span>
             <div class="modal-body">
-              <form
-                name="reserve"
-                action="index.html"
-                method="get"
-                onsubmit="return validate();"
-              >
-                <div class="formData">
+              <form name="reserve" action="index.html" method="get" id="myForm">
+                <div
+                  class="formData"
+                  data-error="Veuillez entrer deux caractères ou plus dans le champ."
+                  data-error-visible="false"
+                >
                   <label for="first">Prénom</label><br />
                   <input
                     class="text-control"
                     type="text"
                     id="first"
                     name="first"
-                    minlength="2"
-                    required
                   /><br />
                 </div>
-                <div class="formData">
+                <div
+                  class="formData"
+                  data-error="Veuillez entrer deux caractères ou plus dans le champ."
+                  data-error-visible="false"
+                >
                   <label for="last">Nom</label><br />
                   <input
                     class="text-control"
                     type="text"
                     id="last"
                     name="last"
-                    required
                   /><br />
                 </div>
-                <div class="formData">
+                <div
+                  class="formData"
+                  data-error="Veuillez entrer une adresse email valide."
+                  data-error-visible="false"
+                >
                   <label for="email">E-mail</label><br />
                   <input
                     class="text-control"
@@ -124,6 +129,8 @@
                     type="date"
                     id="birthdate"
                     name="birthdate"
+                    data-error="Vous devez entrer votre date de naissance."
+                    data-error-visible="false"
                   /><br />
                 </div>
                 <div class="formData">
@@ -144,14 +151,17 @@
                 <p class="text-label">
                   A quel tournoi souhaitez-vous participer cette année ?
                 </p>
-                <div class="formData">
+                <div
+                  class="formData"
+                  data-error="Vous devez choisir une option."
+                  data-error-visible="false"
+                >
                   <input
                     class="checkbox-input"
                     type="radio"
                     id="location1"
                     name="location"
                     value="New York"
-                    checked
                   />
                   <label class="checkbox-label" for="location1">
                     <span class="checkbox-icon"></span>
@@ -219,8 +229,8 @@
                     class="checkbox-input"
                     type="checkbox"
                     id="conditions"
-                    checked
-                    required
+                    data-error="Vous devez vérifier que vous acceptez les termes et conditions"
+                    data-error-visible="false"
                   />
                   <label class="checkbox2-label" for="conditions" required>
                     <span class="checkbox-icon"></span>

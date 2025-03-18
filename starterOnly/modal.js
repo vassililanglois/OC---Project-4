@@ -1,5 +1,10 @@
-// Changement du header principal
+// DOM Elements
+const modalbg = document.querySelector(".bground");
+const modalBtn = document.querySelectorAll(".modal-btn");
+const formData = document.querySelectorAll(".formData");
+const closeButton = document.querySelector(".close");
 
+// Changement du header principal
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -10,7 +15,6 @@ function editNav() {
 }
 
 // Changement du header de la modale
-
 function editNav2() {
   var x = document.getElementById("myTopnav2");
   if (x.className === "topnav") {
@@ -20,22 +24,7 @@ function editNav2() {
   }
 }
 
-// Gestion de l'envoi du formulaire
-
-const form = document.querySelector("form");
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-});
-
-// DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-const closeButton = document.querySelector(".close");
-
-// close the form
-
+// close modal
 closeButton.addEventListener("click", () => {
   modalbg.style.display = "none";
   console.log("fermé");
@@ -47,34 +36,57 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "flex";
+  modalbg.style.flexDirection = "column";
 }
 
-// Récupérations des champs du formulaire
+// Gestion de l'envoi du formulaire
+let form = document.querySelector("form");
+let balisePrenom = document.getElementById("first");
+let baliseNom = document.getElementById("last");
+let baliseEmail = document.getElementById("email");
 
-let prenom = document.getElementById("first");
-console.log(prenom.value);
-
-let nom = document.getElementById("last");
-console.log(nom.value);
-
-let email = document.getElementById("email");
-console.log(email.value);
-
-let birthdate = document.getElementById("birthdate");
-console.log(birthdate.value);
-
-let quantity = document.getElementById("quantity");
-console.log(quantity.value);
-
-//let location = document.querySelector("input[name=location]:checked");
-//console.log(location.value);
-
-let conditions = document.getElementById("conditions");
-console.log(conditions.value);
-
-let newsletter = document.getElementById("newsletter");
-console.log(newsletter.value);
-
-function validate() {
-  console.log("C'est validé !");
+function verifierName(balise) {
+  if (balise.value.trim().length < 2) {
+    balise.classList.remove("good");
+    balise.classList.add("error");
+    balise.closest(".formData").setAttribute("data-error-visible", "true");
+    return false;
+  } else {
+    balise.classList.remove("error");
+    balise.classList.add("good");
+    balise.closest(".formData").setAttribute("data-error-visible", "false");
+    return true;
+  }
 }
+
+function verifierEmail(balise) {
+  let regexpEmail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+.[a-z0-9._-]+");
+
+  if (regexpEmail.test(balise.value.trim())) {
+    balise.classList.remove("error");
+    balise.classList.add("good");
+    balise.closest(".formData").setAttribute("data-error-visible", "false");
+    return true;
+  } else {
+    balise.classList.remove("good");
+    balise.classList.add("error");
+    balise.closest(".formData").setAttribute("data-error-visible", "true");
+    return false;
+  }
+}
+
+// Événements individuels pour chaque champ
+balisePrenom.addEventListener("change", () => verifierName(balisePrenom));
+baliseNom.addEventListener("change", () => verifierName(baliseNom));
+baliseEmail.addEventListener("change", () => verifierEmail(baliseEmail));
+
+// Vérification avant l'envoi du formulaire
+form.addEventListener("submit", (event) => {
+  let prenomValide = verifierName(balisePrenom);
+  let nomValide = verifierName(baliseNom);
+  let emailValide = verifierEmail(baliseEmail);
+
+  if (!prenomValide || !nomValide || !emailValide) {
+    event.preventDefault();
+  }
+});
