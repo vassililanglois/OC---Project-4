@@ -2,7 +2,10 @@
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closeButton = document.querySelector(".close");
+const closeIcon = document.querySelector(".close");
+const closeButton = document.querySelector(".close_button");
+const modalBody = document.querySelector(".modal-body");
+const validateForm = document.querySelector(".validate_form");
 
 // Changement du header principal
 function editNav() {
@@ -24,7 +27,13 @@ function editNav2() {
   }
 }
 
-// close modal
+// close modal with cross
+closeIcon.addEventListener("click", () => {
+  modalbg.style.display = "none";
+  console.log("fermé");
+});
+
+// close modal with button
 closeButton.addEventListener("click", () => {
   modalbg.style.display = "none";
   console.log("fermé");
@@ -150,6 +159,8 @@ for (let i = 0; i < baliseLocation.length; i++) {
 
 // Vérification avant l'envoi du formulaire
 form.addEventListener("submit", (event) => {
+  event.preventDefault;
+
   let prenomValide = verifierName(balisePrenom);
   let nomValide = verifierName(baliseNom);
   let emailValide = verifierEmail(baliseEmail);
@@ -166,5 +177,9 @@ form.addEventListener("submit", (event) => {
     !conditionsValide
   ) {
     event.preventDefault();
+  } else {
+    event.preventDefault();
+    modalBody.style.display = "none";
+    validateForm.style.display = "flex";
   }
 });

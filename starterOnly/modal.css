@@ -215,7 +215,8 @@ footer {
 }
 
 .content {
-  margin: 5% auto;
+  min-height: 850px;
+  margin: 0 auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -382,6 +383,25 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
   margin-top: 10px;
+}
+
+.validate_form {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.validate_form p {
+  font-size: 2.25rem;
+  font-weight: 300;
+}
+
+.validate_form button {
+  position: absolute;
+  bottom: 30px;
 }
 /* custom select styles */
 .custom-select {
