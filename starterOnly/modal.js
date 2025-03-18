@@ -44,6 +44,7 @@ let form = document.querySelector("form");
 let balisePrenom = document.getElementById("first");
 let baliseNom = document.getElementById("last");
 let baliseEmail = document.getElementById("email");
+let baliseBirthdate = document.getElementById("birthdate");
 
 function verifierName(balise) {
   if (balise.value.trim().length < 2) {
@@ -75,18 +76,43 @@ function verifierEmail(balise) {
   }
 }
 
+function verifierBirthdate(balise) {
+  let birthdate = new Date(baliseBirthdate.value);
+  let currentDate = new Date();
+
+  let age18Date = new Date(birthdate);
+  age18Date.setFullYear(birthdate.getFullYear() + 18);
+  console.log(age18Date);
+
+  if (currentDate >= age18Date) {
+    balise.classList.remove("error");
+    balise.classList.add("good");
+    balise.closest(".formData").setAttribute("data-error-visible", "false");
+    return true;
+  } else {
+    balise.classList.remove("good");
+    balise.classList.add("error");
+    balise.closest(".formData").setAttribute("data-error-visible", "true");
+    return false;
+  }
+}
+
 // Événements individuels pour chaque champ
 balisePrenom.addEventListener("change", () => verifierName(balisePrenom));
 baliseNom.addEventListener("change", () => verifierName(baliseNom));
 baliseEmail.addEventListener("change", () => verifierEmail(baliseEmail));
+baliseBirthdate.addEventListener("change", () =>
+  verifierBirthdate(baliseBirthdate)
+);
 
 // Vérification avant l'envoi du formulaire
 form.addEventListener("submit", (event) => {
   let prenomValide = verifierName(balisePrenom);
   let nomValide = verifierName(baliseNom);
   let emailValide = verifierEmail(baliseEmail);
+  let birthdateValide = verifierBirthdate(baliseBirthdate);
 
-  if (!prenomValide || !nomValide || !emailValide) {
+  if (!prenomValide || !nomValide || !emailValide || !birthdateValide) {
     event.preventDefault();
   }
 });
