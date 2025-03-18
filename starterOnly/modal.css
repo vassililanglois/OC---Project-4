@@ -215,7 +215,7 @@ footer {
 }
 
 .content {
-  min-height: 850px;
+  min-height: 900px;
   margin: 0 auto;
   width: 100%;
   max-width: 500px;
@@ -272,6 +272,7 @@ input {
 .formData[data-error-visible="true"]::after {
   opacity: 1;
   text-align: left;
+  line-height: 1;
 }
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
@@ -624,6 +625,7 @@ input[data-error]::after {
 
 @media (max-width: 500px) {
   .content {
+    min-height: 0;
     margin: 0;
     height: 100%;
     margin-bottom: 0;
