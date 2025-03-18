@@ -45,6 +45,8 @@ let balisePrenom = document.getElementById("first");
 let baliseNom = document.getElementById("last");
 let baliseEmail = document.getElementById("email");
 let baliseBirthdate = document.getElementById("birthdate");
+let baliseLocation = document.getElementsByName("location");
+let baliseConditions = document.getElementById("conditions");
 
 function verifierName(balise) {
   if (balise.value.trim().length < 2) {
@@ -97,6 +99,37 @@ function verifierBirthdate(balise) {
   }
 }
 
+function verifierLocation(balise) {
+  let isChecked = false;
+
+  // Vérifie si au moins un bouton radio est coché
+  for (let i = 0; i < balise.length; i++) {
+    if (balise[i].checked) {
+      isChecked = true;
+      break;
+    }
+  }
+
+  // Si un bouton est coché, on valide, sinon on affiche une erreur
+  if (isChecked) {
+    balise[0].closest(".formData").setAttribute("data-error-visible", "false");
+    return true;
+  } else {
+    balise[0].closest(".formData").setAttribute("data-error-visible", "true");
+    return false;
+  }
+}
+
+function verifierConditions(balise) {
+  if (balise.checked) {
+    balise.closest(".formData").setAttribute("data-error-visible", "false");
+    return true;
+  } else {
+    balise.closest(".formData").setAttribute("data-error-visible", "true");
+    return false;
+  }
+}
+
 // Événements individuels pour chaque champ
 balisePrenom.addEventListener("change", () => verifierName(balisePrenom));
 baliseNom.addEventListener("change", () => verifierName(baliseNom));
@@ -104,6 +137,16 @@ baliseEmail.addEventListener("change", () => verifierEmail(baliseEmail));
 baliseBirthdate.addEventListener("change", () =>
   verifierBirthdate(baliseBirthdate)
 );
+baliseConditions.addEventListener("change", () =>
+  verifierConditions(baliseConditions)
+);
+
+// Attacher un événement à chaque bouton radio pour Location
+for (let i = 0; i < baliseLocation.length; i++) {
+  baliseLocation[i].addEventListener("change", () => {
+    verifierLocation(baliseLocation);
+  });
+}
 
 // Vérification avant l'envoi du formulaire
 form.addEventListener("submit", (event) => {
@@ -111,8 +154,17 @@ form.addEventListener("submit", (event) => {
   let nomValide = verifierName(baliseNom);
   let emailValide = verifierEmail(baliseEmail);
   let birthdateValide = verifierBirthdate(baliseBirthdate);
+  let locationValide = verifierLocation(baliseLocation);
+  let conditionsValide = verifierConditions(baliseConditions);
 
-  if (!prenomValide || !nomValide || !emailValide || !birthdateValide) {
+  if (
+    !prenomValide ||
+    !nomValide ||
+    !emailValide ||
+    !birthdateValide ||
+    !locationValide ||
+    !conditionsValide
+  ) {
     event.preventDefault();
   }
 });
