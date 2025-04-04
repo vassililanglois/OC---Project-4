@@ -30,13 +30,11 @@ function editNav2() {
 // close modal with cross
 closeIcon.addEventListener("click", () => {
   modalbg.style.display = "none";
-  console.log("fermé");
 });
 
 // close modal with button
 closeButton.addEventListener("click", () => {
   modalbg.style.display = "none";
-  console.log("fermé");
 });
 
 // launch modal event
@@ -54,11 +52,13 @@ let balisePrenom = document.getElementById("first");
 let baliseNom = document.getElementById("last");
 let baliseEmail = document.getElementById("email");
 let baliseBirthdate = document.getElementById("birthdate");
+let baliseQuantity = document.getElementById("quantity");
 let baliseLocation = document.getElementsByName("location");
 let baliseConditions = document.getElementById("conditions");
 
 function verifierName(balise) {
-  if (balise.value.trim().length < 2) {
+  let regexpName = new RegExp("^[^0-9]+$");
+  if (balise.value.trim().length < 2 || !regexpName.test(balise.value.trim())) {
     balise.classList.remove("good");
     balise.classList.add("error");
     balise.closest(".formData").setAttribute("data-error-visible", "true");
@@ -72,7 +72,9 @@ function verifierName(balise) {
 }
 
 function verifierEmail(balise) {
-  let regexpEmail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+.[a-z0-9._-]+");
+  let regexpEmail = new RegExp(
+    "[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z0-9._-]+"
+  );
 
   if (regexpEmail.test(balise.value.trim())) {
     balise.classList.remove("error");
@@ -93,7 +95,6 @@ function verifierBirthdate(balise) {
 
   let age18Date = new Date(birthdate);
   age18Date.setFullYear(birthdate.getFullYear() + 18);
-  console.log(age18Date);
 
   if (currentDate >= age18Date) {
     balise.classList.remove("error");
@@ -129,6 +130,20 @@ function verifierLocation(balise) {
   }
 }
 
+function verifierQuantity(balise) {
+  if (balise.value.trim() === "" || isNaN(balise.value) || balise.value < 0) {
+    balise.classList.remove("good");
+    balise.classList.add("error");
+    balise.closest(".formData").setAttribute("data-error-visible", "true");
+    return false;
+  } else {
+    balise.classList.remove("error");
+    balise.classList.add("good");
+    balise.closest(".formData").setAttribute("data-error-visible", "false");
+    return true;
+  }
+}
+
 function verifierConditions(balise) {
   if (balise.checked) {
     balise.closest(".formData").setAttribute("data-error-visible", "false");
@@ -145,6 +160,9 @@ baliseNom.addEventListener("change", () => verifierName(baliseNom));
 baliseEmail.addEventListener("change", () => verifierEmail(baliseEmail));
 baliseBirthdate.addEventListener("change", () =>
   verifierBirthdate(baliseBirthdate)
+);
+baliseQuantity.addEventListener("change", () =>
+  verifierBirthdate(baliseQuantity)
 );
 baliseConditions.addEventListener("change", () =>
   verifierConditions(baliseConditions)
@@ -165,6 +183,7 @@ form.addEventListener("submit", (event) => {
   let nomValide = verifierName(baliseNom);
   let emailValide = verifierEmail(baliseEmail);
   let birthdateValide = verifierBirthdate(baliseBirthdate);
+  let quantityValide = verifierQuantity(baliseQuantity);
   let locationValide = verifierLocation(baliseLocation);
   let conditionsValide = verifierConditions(baliseConditions);
 
@@ -173,6 +192,7 @@ form.addEventListener("submit", (event) => {
     !nomValide ||
     !emailValide ||
     !birthdateValide ||
+    !quantityValide ||
     !locationValide ||
     !conditionsValide
   ) {
@@ -181,5 +201,16 @@ form.addEventListener("submit", (event) => {
     event.preventDefault();
     modalBody.style.display = "none";
     validateForm.style.display = "flex";
+
+    console.log(`
+      Prénom: ${balisePrenom.value}
+      Nom: ${baliseNom.value}
+      Email: ${baliseEmail.value}
+      Date de naissance: ${baliseBirthdate.value}
+      Nombre de tournois précédents: ${baliseQuantity.value}
+      Ville choisie pour le prochain tournoi: ${Array.from(baliseLocation)
+        .filter((radio) => radio.checked)
+        .map((radio) => radio.value)}
+      `);
   }
 });
