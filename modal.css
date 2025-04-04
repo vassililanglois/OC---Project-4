@@ -100,45 +100,6 @@ img {
   border: solid 3px #48e562;
 }
 
-@media screen and (max-width: 1200px) {
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    position: relative;
-  }
-  .topnav {
-    align-items: flex-start;
-    margin-right: 5%;
-  }
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-
-  .topnav.responsive a {
-    float: none;
-    display: flex;
-    text-align: left;
-  }
-  /*.topnav.responsive {
-    position: relative;
-  }
-
-
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }*/
-}
-
 main {
   font-size: 130%;
   font-weight: bolder;
@@ -550,6 +511,47 @@ input[data-error]::after {
 }
 .hero-section > .btn-signup-wrapper {
   display: none;
+}
+
+/***** Responsive Design *****/
+
+@media screen and (max-width: 1200px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+  }
+  .topnav {
+    align-items: flex-start;
+    margin-right: 5%;
+  }
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  .topnav.responsive a {
+    float: none;
+    display: flex;
+    text-align: left;
+  }
+  /*.topnav.responsive {
+    position: relative;
+  }
+
+
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }*/
 }
 
 @media screen and (max-width: 1024px) {
