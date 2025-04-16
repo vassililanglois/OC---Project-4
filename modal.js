@@ -27,24 +27,29 @@ function editNav2() {
   }
 }
 
-// close modal with cross
-closeIcon.addEventListener("click", () => {
-  modalbg.style.display = "none";
-});
-
-// close modal with button
-closeButton.addEventListener("click", () => {
-  modalbg.style.display = "none";
-});
-
-// launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
 // launch modal form
 function launchModal() {
   modalbg.style.display = "flex";
   modalbg.style.flexDirection = "column";
 }
+
+// launch modal event
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
+// close modal form
+function closeModal() {
+  modalbg.style.display = "none";
+}
+
+// close modal with cross
+closeIcon.addEventListener("click", () => {
+  closeModal();
+});
+
+// close modal with button
+closeButton.addEventListener("click", () => {
+  closeModal();
+});
 
 // Gestion de l'envoi du formulaire
 let form = document.querySelector("form");
