@@ -59,9 +59,9 @@ function logFormData(fields) {
     Prénom: ${fields.firstNameField.value}
     Nom: ${fields.lastNameField.value}
     Email: ${fields.emailField.value}
-    "Date de naissance": ${fields.birthdateField.value}
-    "Nombre de participations": ${fields.quantityField.value}
-    "Ville sélectionnée": ${selectedLocation}
+    Date de naissance: ${fields.birthdateField.value}
+    Nombre de participations: ${fields.quantityField.value}
+    Ville sélectionnée: ${selectedLocation}
   `;
 
   console.log(formData);
