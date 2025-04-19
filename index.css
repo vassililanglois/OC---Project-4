@@ -190,6 +190,10 @@ footer {
   padding-top: 10px;
 }
 
+.main-navbar {
+  display: flex;
+}
+
 .bground .main-navbar .nav_links {
   font-weight: 400;
 }
@@ -347,7 +351,7 @@ input[data-error]::after {
   margin-top: 10px;
 }
 
-.validate_form {
+.validate-form {
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -356,12 +360,12 @@ input[data-error]::after {
   text-align: center;
 }
 
-.validate_form p {
+.validate-form p {
   font-size: 2.25rem;
   font-weight: 300;
 }
 
-.validate_form button {
+.validate-form button {
   position: absolute;
   bottom: 30px;
 }
@@ -515,7 +519,7 @@ input[data-error]::after {
 
 /***** Responsive Design *****/
 
-@media screen and (max-width: 1200px) {
+@media (max-width: 1200px) {
   header {
     display: flex;
     flex-direction: column;
@@ -527,20 +531,26 @@ input[data-error]::after {
     align-items: flex-start;
     margin-right: 5%;
   }
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
+
+  .topnav .icon {
     float: right;
     display: flex;
     margin: 0;
     padding: 0;
   }
+  .main-navbar {
+    display: none;
+    flex-direction: column;
+  }
 
-  .topnav.responsive a {
+  .topnav.responsive {
     float: none;
     display: flex;
     text-align: left;
+  }
+
+  .topnav.responsive > .main-navbar {
+    display: flex;
   }
   /*.topnav.responsive {
     position: relative;
