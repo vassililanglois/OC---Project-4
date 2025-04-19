@@ -55,14 +55,14 @@ function logFormData(fields) {
     "input[name=location]:checked"
   ).value;
 
-  const formData = {
-    Prénom: fields.firstNameField.value,
-    Nom: fields.lastNameField.value,
-    Email: fields.emailField.value,
-    "Date de naissance": fields.birthdateField.value,
-    "Nombre de participations": fields.quantityField.value,
-    "Ville sélectionnée": selectedLocation,
-  };
+  const formData = `
+    Prénom: ${fields.firstNameField.value},
+    Nom: ${fields.lastNameField.value},
+    Email: ${fields.emailField.value},
+    "Date de naissance": ${fields.birthdateField.value},
+    "Nombre de participations": ${fields.quantityField.value},
+    "Ville sélectionnée": ${selectedLocation},
+  `;
 
   console.log(formData);
 }
